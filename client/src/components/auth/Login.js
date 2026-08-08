@@ -25,7 +25,9 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="w-full max-w-md bg-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 md:p-10">
+  <div className="min-h-screen bg-slate-900 flex justify-center pt-14 px-4">
+    <div className="w-full max-w-md bg-slate-800 rounded-3xl p-6 sm:p-8 h-fit">
+      
       <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
         Welcome Back 👋
       </h1>
@@ -72,8 +74,10 @@ const Login = ({ login, isAuthenticated }) => {
           Register
         </Link>
       </p>
+
     </div>
-  );
+  </div>
+);
 };
 
 Login.propTypes = {
