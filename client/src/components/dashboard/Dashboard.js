@@ -49,7 +49,7 @@ const Dashboard = ({
                 </h3>
 
                 <p className="text-3xl sm:text-4xl font-bold mt-3">
-                  {profile.education.length}
+{Array.isArray(profile.education) ? profile.education.length : 0}
                 </p>
 
                 <p className="text-slate-400 mt-1 text-sm sm:text-base">
@@ -63,7 +63,7 @@ const Dashboard = ({
                 </h3>
 
                 <p className="text-3xl sm:text-4xl font-bold mt-3">
-                  {profile.experience.length}
+{Array.isArray(profile.experience) ? profile.experience.length : 0}
                 </p>
 
                 <p className="text-slate-400 mt-1 text-sm sm:text-base">
@@ -74,40 +74,30 @@ const Dashboard = ({
             </div>
 
             {/* Education */}
-            {profile.education.length > 0 && (
-              <div className="mt-8 sm:mt-10">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-5">
-                  🎓 Education
-                </h2>
+{Array.isArray(profile.education) && profile.education.length > 0 && (
+  <div className="mt-8 sm:mt-10">
+    <h2 className="text-2xl sm:text-3xl font-bold mb-5">
+      🎓 Education
+    </h2>
 
-                <div className="space-y-4">
-                  {profile.education.map((education) => (
-                    <Education
-                      key={education._id}
-                      education={education}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+    <div className="space-y-4">
+      <Education education={profile.education} />
+    </div>
+  </div>
+)}
 
             {/* Experience */}
-            {profile.experience.length > 0 && (
-              <div className="mt-8 sm:mt-10">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-5">
-                  💼 Experience
-                </h2>
+{Array.isArray(profile.experience) && profile.experience.length > 0 && (
+  <div className="mt-8 sm:mt-10">
+    <h2 className="text-2xl sm:text-3xl font-bold mb-5">
+      💼 Experience
+    </h2>
 
-                <div className="space-y-4">
-                  {profile.experience.map((experience) => (
-                    <Experience
-                      key={experience._id}
-                      experience={experience}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+    <div className="space-y-4">
+      <Experience experience={profile.experience} />
+    </div>
+  </div>
+)}
 
             {/* Delete Account */}
             <div className="mt-8 sm:mt-10">

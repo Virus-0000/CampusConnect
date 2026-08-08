@@ -229,7 +229,7 @@ export const deleteExperience = id => async dispatch => {
 
 // Delete account & profile
 export const deleteAccount = () => async dispatch => {
-  if (window.confirm('Are you sure? This can NOT be undone!')) {
+
     try {
       await api.delete('/api/profile');
 
@@ -243,5 +243,4 @@ export const deleteAccount = () => async dispatch => {
         payload: { msg: err.response.statusText, status: err.response.status }
       });
     }
-  }
 };

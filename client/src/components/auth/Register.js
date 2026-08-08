@@ -33,9 +33,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <div className="w-full max-w-lg bg-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 md:p-12">
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-3xl sm:text-4xl">🚀</span>
+  <div className="min-h-screen flex items-center justify-center px-4 py-8">
+    <div className="w-full max-w-lg bg-slate-800 rounded-3xl p-6 sm:p-8 md:p-10 border border-slate-700 shadow-xl">
+
+      <div className="flex items-center gap-3">
+        <span className="text-4xl">🚀</span>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
           Create Account
@@ -46,7 +48,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         Join CampusConnect today.
       </p>
 
+      {/* Your existing form */}
       <form onSubmit={onSubmit} className="space-y-4 sm:space-y-5">
+
         <input
           type="text"
           placeholder="Full Name"
@@ -106,8 +110,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           Login
         </Link>
       </p>
+
     </div>
-  );
+  </div>
+);
 };
 
 Register.propTypes = {
