@@ -1,0 +1,365 @@
+/* =========================================
+   Global Styles
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-color: #0f172a;
+  color: #fff;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* =========================================
+   Root Variables
+========================================= */
+
+:root {
+  --primary-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+/* =========================================
+   Existing Utility Classes
+========================================= */
+
+.btns {
+  margin: 5% 3% 5% 0;
+}
+
+.formBody {
+  text-align: center !important;
+}
+
+.addNet {
+  border: 0;
+  padding: 0;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-editProfile {
+  max-width: 600px;
+  padding: 10px;
+}
+
+.form-create {
+  max-width: 500px;
+}
+
+.form-post {
+  max-width: 650px;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.form-floating {
+  position: relative;
+}
+
+.form-floating .form-control {
+  padding: 1rem 0.75rem;
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+}
+
+.bottom {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bottomPost {
+  margin-bottom: 50px;
+}
+
+.top {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.middle {
+  border-radius: 0;
+  margin-bottom: -1px;
+}
+
+.font-link {
+  font-size: 45px;
+  font-family: "Pacifico", cursive;
+}
+
+.sec {
+  background-color: #85586f;
+}
+
+.title-font {
+  font-family: "Montserrat";
+  font-size: 4.25rem;
+  line-height: 1.5;
+  font-weight: 900;
+}
+
+.title-image {
+  width: 100%;
+  position: absolute;
+  margin-top: 20%;
+}
+
+.landing-div {
+  margin-top: -90px;
+}
+
+.container-fluid {
+  text-align: left;
+  padding: 3% 15%;
+}
+
+/* =========================================
+   Alerts
+========================================= */
+
+.alert {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+
+/* =========================================
+   Forms
+========================================= */
+
+.form .form-group {
+  margin: 1.2rem 0;
+}
+
+.form .form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+.form .social-input {
+  display: flex;
+}
+
+.form .social-input i {
+  padding: 0.5rem;
+  width: 4rem;
+}
+
+/* =========================================
+   Tables
+========================================= */
+
+.table th,
+.table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table th {
+  background: var(--light-color);
+}
+
+/* =========================================
+   Old Profile Support
+========================================= */
+
+.round-img {
+  border-radius: 50%;
+}
+
+.line {
+  height: 1px;
+  background: #ccc;
+  margin: 1.5rem 0;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================================
+   Old Landing Support
+========================================= */
+
+.landing {
+  position: relative;
+  background-color: #85586f;
+  height: 100vh;
+}
+
+.landing-inner {
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  padding: 4% 15%;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =========================================
+   Old Profile Support
+========================================= */
+
+.profile-grid {
+  display: grid;
+  grid-template-areas:
+    "top top"
+    "about about"
+    "exp edu"
+    "github github";
+  grid-gap: 1rem;
+}
+
+.profile-top {
+  grid-area: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-top img {
+  width: 250px;
+}
+
+.profile-about {
+  grid-area: about;
+  text-align: center;
+}
+
+.profile-exp {
+  grid-area: exp;
+}
+
+.profile-edu {
+  grid-area: edu;
+}
+
+.profile-github {
+  grid-area: github;
+}
+
+/* =========================================
+   Old Posts Support
+========================================= */
+
+.post-form .post-form-header {
+  background: var(--primary-color);
+  padding: 0.5rem;
+}
+
+.post .comment-count {
+  background: var(--light-color);
+  color: var(--primary-color);
+  padding: 0.1rem 0.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.post .post-date {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   Mobile
+========================================= */
+
+@media (max-width: 700px) {
+  .hide-sm {
+    display: none;
+  }
+
+  .container-fluid {
+    padding: 1rem;
+  }
+
+  .title-font {
+    font-size: 2.5rem;
+  }
+
+  .landing-inner {
+    padding: 2rem 1rem;
+  }
+
+  .profile-grid {
+    grid-template-areas:
+      "top"
+      "about"
+      "exp"
+      "edu"
+      "github";
+  }
+
+  .profile-top img {
+    width: 200px;
+  }
+}
