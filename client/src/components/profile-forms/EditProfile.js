@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import api from "../../utils/api";
 import { connect } from "react-redux";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
+
 import {
   FaTwitter,
   FaFacebook,
@@ -73,11 +74,12 @@ const EditProfile = ({
     instagram,
   } = formData;
 
-  const onChange = (e) =>
+  const onChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
 
   const onAvatarChange = (e) => {
     const file = e.target.files[0];
@@ -92,11 +94,11 @@ const EditProfile = ({
   const uploadAvatar = async () => {
     if (!avatar) return;
 
-    const formData = new FormData();
-    formData.append("avatar", avatar);
+    const avatarFormData = new FormData();
+    avatarFormData.append("avatar", avatar);
 
     try {
-      await api.post("/api/profile/avatar", formData, {
+      await api.post("/api/profile/avatar", avatarFormData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -121,6 +123,7 @@ const EditProfile = ({
     <div className="min-h-screen bg-slate-900 text-white px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
       <div className="max-w-4xl mx-auto w-full">
         <div className="bg-slate-800 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-xl border border-slate-700">
+
           {/* Header */}
           <h1 className="text-3xl sm:text-4xl font-extrabold mb-3 leading-tight">
             ✏️ Edit Developer Profile
@@ -131,68 +134,75 @@ const EditProfile = ({
           </p>
 
           <form onSubmit={onSubmit} className="space-y-5">
-            {/* Profile Fields */}
+
+            {/* Professional Status */}
             <input
               type="text"
               name="status"
               placeholder="Professional Status"
               value={status}
               onChange={onChange}
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
             />
 
+            {/* Company */}
             <input
               type="text"
               name="company"
               placeholder="Company"
               value={company}
               onChange={onChange}
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
             />
 
+            {/* Website */}
             <input
               type="text"
               name="website"
               placeholder="Website"
               value={website}
               onChange={onChange}
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
             />
 
+            {/* Location */}
             <input
               type="text"
               name="location"
               placeholder="Location"
               value={location}
               onChange={onChange}
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
             />
 
+            {/* Skills */}
             <input
               type="text"
               name="skills"
               placeholder="Skills (comma separated)"
               value={skills}
               onChange={onChange}
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
             />
 
+            {/* GitHub */}
             <input
               type="text"
               name="githubusername"
               placeholder="GitHub Username"
               value={githubusername}
               onChange={onChange}
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
             />
 
+            {/* Bio */}
             <textarea
               name="bio"
               placeholder="Tell us about yourself..."
               value={bio}
               onChange={onChange}
               rows="5"
-              className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 resize-none text-sm sm:text-base leading-6"
+              className="w-full rounded-xl bg-slate-700 border border-slate-600 px-4 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 resize-none text-sm sm:text-base leading-6"
             />
 
             {/* Avatar */}
@@ -232,73 +242,97 @@ const EditProfile = ({
               </button>
             </div>
 
-            {/* Social Inputs */}
-            {displaySocialInputs && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative">
-                  <FaTwitter className="absolute left-4 top-1/2 -translate-y-1/2 text-sky-400" />
-                  <input
-                    type="text"
-                    name="twitter"
-                    placeholder="Twitter URL"
-                    value={twitter}
-                    onChange={onChange}
-                    className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 pl-11 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
-                  />
-                </div>
 
-                <div className="relative">
-                  <FaFacebook className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-400" />
-                  <input
-                    type="text"
-                    name="facebook"
-                    placeholder="Facebook URL"
-                    value={facebook}
-                    onChange={onChange}
-                    className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 pl-11 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
-                  />
-                </div>
+           {/* Social Inputs */}
+{displaySocialInputs && (
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                <div className="relative">
-                  <FaLinkedin className="absolute left-4 top-1/2 -translate-y-1/2 text-blue-500" />
-                  <input
-                    type="text"
-                    name="linkedin"
-                    placeholder="LinkedIn URL"
-                    value={linkedin}
-                    onChange={onChange}
-                    className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 pl-11 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
-                  />
-                </div>
+    {/* Twitter */}
+    <div className="flex items-center rounded-xl bg-slate-700 border border-slate-600 focus-within:border-indigo-500">
+      <div className="pl-4 pr-2 flex-shrink-0">
+        <FaTwitter className="text-sky-400 text-xl" />
+      </div>
 
-                <div className="relative">
-                  <FaYoutube className="absolute left-4 top-1/2 -translate-y-1/2 text-red-500" />
-                  <input
-                    type="text"
-                    name="youtube"
-                    placeholder="YouTube URL"
-                    value={youtube}
-                    onChange={onChange}
-                    className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 pl-11 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
-                  />
-                </div>
+      <input
+        type="text"
+        name="twitter"
+        placeholder="Twitter URL"
+        value={twitter}
+        onChange={onChange}
+        className="w-full bg-transparent px-2 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none text-sm sm:text-base"
+      />
+    </div>
 
-                <div className="relative sm:col-span-2">
-                  <FaInstagram className="absolute left-4 top-1/2 -translate-y-1/2 text-pink-400" />
-                  <input
-                    type="text"
-                    name="instagram"
-                    placeholder="Instagram URL"
-                    value={instagram}
-                    onChange={onChange}
-                    className="w-full rounded-xl bg-slate-700 border border-slate-600 p-3.5 sm:p-4 pl-11 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 text-sm sm:text-base"
-                  />
-                </div>
-              </div>
-            )}
+    {/* Facebook */}
+    <div className="flex items-center rounded-xl bg-slate-700 border border-slate-600 focus-within:border-indigo-500">
+      <div className="pl-4 pr-2 flex-shrink-0">
+        <FaFacebook className="text-blue-400 text-xl" />
+      </div>
+
+      <input
+        type="text"
+        name="facebook"
+        placeholder="Facebook URL"
+        value={facebook}
+        onChange={onChange}
+        className="w-full bg-transparent px-2 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none text-sm sm:text-base"
+      />
+    </div>
+
+    {/* LinkedIn */}
+    <div className="flex items-center rounded-xl bg-slate-700 border border-slate-600 focus-within:border-indigo-500">
+      <div className="pl-4 pr-2 flex-shrink-0">
+        <FaLinkedin className="text-blue-500 text-xl" />
+      </div>
+
+      <input
+        type="text"
+        name="linkedin"
+        placeholder="LinkedIn URL"
+        value={linkedin}
+        onChange={onChange}
+        className="w-full bg-transparent px-2 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none text-sm sm:text-base"
+      />
+    </div>
+
+    {/* YouTube */}
+    <div className="flex items-center rounded-xl bg-slate-700 border border-slate-600 focus-within:border-indigo-500">
+      <div className="pl-4 pr-2 flex-shrink-0">
+        <FaYoutube className="text-red-500 text-xl" />
+      </div>
+
+      <input
+        type="text"
+        name="youtube"
+        placeholder="YouTube URL"
+        value={youtube}
+        onChange={onChange}
+        className="w-full bg-transparent px-2 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none text-sm sm:text-base"
+      />
+    </div>
+
+    {/* Instagram */}
+    <div className="flex items-center rounded-xl bg-slate-700 border border-slate-600 focus-within:border-indigo-500 sm:col-span-2">
+      <div className="pl-4 pr-2 flex-shrink-0">
+        <FaInstagram className="text-pink-400 text-xl" />
+      </div>
+
+      <input
+        type="text"
+        name="instagram"
+        placeholder="Instagram URL"
+        value={instagram}
+        onChange={onChange}
+        className="w-full bg-transparent px-2 py-3.5 sm:py-4 text-white placeholder-slate-400 focus:outline-none text-sm sm:text-base"
+      />
+    </div>
+
+  </div>
+)}
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+
               <button
                 type="submit"
                 className="flex-1 bg-indigo-600 hover:bg-indigo-500 transition py-3.5 sm:py-4 rounded-xl font-semibold text-sm sm:text-base"
@@ -312,7 +346,9 @@ const EditProfile = ({
               >
                 Cancel
               </Link>
+
             </div>
+
           </form>
         </div>
       </div>

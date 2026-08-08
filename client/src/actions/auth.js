@@ -65,30 +65,47 @@ export const register = ({ name, email, password }) => async dispatch => {
 };
 
 // Login User
+// Login User
 export const login = (email, password) => async dispatch => {
   console.log("Login action called");
+
   const config = {
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     }
   };
 
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await api.post('/api/auth', body, config);
+    const res = await api.post("/api/auth", body, config);
 
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
-    });
+   dispatch({
+  type: LOGIN_SUCCESS,
+  payload: res.data
+});
 
-    dispatch(loadUser());
+dispatch(setAlert("Login successful!", "success"));
+
+dispatch(loadUser());
+
   } catch (err) {
-    const errors = err.response.data.errors;
+    console.log("Login Error:", err.response);
 
-    if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    if (err.response && err.response.data) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach(error =>
+          dispatch(setAlert(error.msg, "danger"))
+        );
+      } else if (err.response.data.msg) {
+        dispatch(setAlert(err.response.data.msg, "danger"));
+      } else {
+        dispatch(setAlert("Invalid email or password", "danger"));
+      }
+    } else {
+      dispatch(setAlert("Unable to connect to server", "danger"));
     }
 
     dispatch({
@@ -96,7 +113,6 @@ export const login = (email, password) => async dispatch => {
     });
   }
 };
-
 // Logout / Clear Profile
 export const logout = () => dispatch => {
   dispatch({ type: CLEAR_PROFILE });
